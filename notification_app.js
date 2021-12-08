@@ -57,6 +57,9 @@ function onClickWait() {
 setInterval(
     function(){
         console.log("timer");
+        const xhr = new XMLHttpRequest();
+        xhr.open("get", "http://localhost:3000/check_notification");
+        xhr.send();
     },
     1000
 );
