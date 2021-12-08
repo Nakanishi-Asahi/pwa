@@ -54,4 +54,9 @@ function onClickWait() {
         alert('通知の許可がもらえませんよ');
     }
 }
-*/
+setInterval(
+    function(){
+        console.log("timer");
+    },
+    1000
+);
