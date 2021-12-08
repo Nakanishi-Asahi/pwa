@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.7/push.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="vue-cookies.js"></script> -->
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./pwa.css">
+    <title>VitalBeats通知アプリ</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <div class="button-area">
+                <div class="get-permission-button" v-on:click="get_permission();">
+                    通知の許可
+                </div>
+                <div class="create-push-button" v-on:click="create_push();">
+                    通知のテスト
+                </div>
+            </div>
+            <div class="notification-table">
+                <div class="table-head">
+                    メッセージ
+                </div>
+                <div class="table-row" v-for="notification in notifications">
+                    {{notification.message}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="notification_app.js"></script>
+</body>
+
+</html>

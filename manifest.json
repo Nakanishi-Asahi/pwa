@@ -1,0 +1,15 @@
+{
+  "short_name": "VitalBeats通知アプリ",
+  "name": "VitalBeats通知アプリ",
+  "icons": [
+    {
+      "src": "icon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "notification_app.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFF00"
+}
