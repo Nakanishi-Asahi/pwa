@@ -1,38 +1,78 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="ja">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
 
 <head>
-    <meta charset="utf-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.7/push.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- <script src="vue-cookies.js"></script> -->
+    <meta charset="utf-8" />
+    <title>Hello World Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" href="./pwa.css">
-    <title>VitalBeats通知アプリ</title>
 </head>
 
 <body>
-    <div id="app">
-        <div class="main">
-            <div class="button-area">
-                <div class="get-permission-button" v-on:click="get_permission();">
-                    通知の許可
-                </div>
-                <div class="create-push-button" v-on:click="create_push();">
-                    通知のテスト
-                </div>
-            </div>
-            <div class="notification-table">
-                <div class="table-head">
-                    メッセージ
-                </div>
-                <div class="table-row" v-for="notification in notifications">
-                    {{notification.message}}
-                </div>
-            </div>
-        </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <h1 class="text-center">Hello Worldですよね</h1>
+        <button id="confirm">通知許可の確認</button>
+        <button id="send">すぐに通知を送信</button>
+        <button id="wait">3秒待ってから送信</button>
+        <script>
+            window.addEventListener('load', () => {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker
+                        .register('sw.js')
+                        .then(registration => console.log('registered', registration))
+                        .catch(error => console.log('error', error));
+                }
+            });
+            document
+                .getElementById('confirm')
+                .addEventListener('click', onClickConfirm);
+            document.getElementById('send').addEventListener('click', onClickSend);
+            document.getElementById('wait').addEventListener('click', onClickWait);
+            function onClickConfirm() {
+                if (!('Notification' in window)) {
+                    alert('このブラウザはプッシュ通知に対応してません。。。');
+                    return;
+                }
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') alert('通知の許可がもらえました');
+                    if (permission === 'denied') alert('通知の許可がもらえませんでした');
+                });
+            }
+            function onClickSend() {
+                if (!('Notification' in window)) {
+                    alert('このブラウザはプッシュ通知に対応してません。。。');
+                    return;
+                }
+                const permission = Notification.permission;
+                if (permission === 'granted') {
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.active.postMessage('よぉ!!!');
+                    });
+                } else {
+                    alert('通知の許可がもらえませんよ');
+                }
+            }
+            function onClickWait() {
+                if (!('Notification' in window)) {
+                    alert('このブラウザはプッシュ通知に対応してません。。。');
+                    return;
+                }
+                const permission = Notification.permission;
+                if (permission === 'granted') {
+                    navigator.serviceWorker.ready.then(registration => {
+                        setTimeout(function () {
+                            registration.active.postMessage('ちょっと待ったぜ!!!');
+                        }, 3000);
+                    });
+                } else {
+                    alert('通知の許可がもらえませんよ');
+                }
+            }
+        </script>
     </div>
-    <script src="notification_app.js"></script>
+    <div class="col-sm-3"></div>
 </body>
 
 </html>
