@@ -14,8 +14,8 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <h1 class="text-center">Hello Worldですよね</h1>
-        <button id="confirm">通知許可の確認</button>
-        <button id="send">すぐに通知を送信</button>
+        <button id="confirm" v-on:click="confirm();">通知許可の確認</button>
+        <button id="send" v-on:click="send();">すぐに通知を送信</button>
         <button id="wait">3秒待ってから送信</button>
         <script src="notification_app.js"></script>
     </div>
