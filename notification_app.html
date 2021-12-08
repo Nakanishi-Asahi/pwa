@@ -6,16 +6,16 @@
     <meta charset="utf-8" />
     <title>VitalBeats通知アプリ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
     <link rel="manifest" href="./manifest.json">
 </head>
 
 <body>
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        <h1 class="text-center">Hello Worldですよね</h1>
-        <button id="confirm" v-on:click="confirm();">通知許可の確認</button>
-        <button id="send" v-on:click="send();">すぐに通知を送信</button>
+        <h1 class="text-center">VitalBeats通知アプリ</h1>
+        <button id="confirm">通知許可の確認</button>
+        <button id="send">すぐに通知を送信</button>
         <button id="wait">3秒待ってから送信</button>
         <script src="notification_app.js"></script>
     </div>
